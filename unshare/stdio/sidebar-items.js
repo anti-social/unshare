@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Fd","An enumeration that is used to configure non-stdio file descriptors. It differs from stdio one because we must differentiate from readable and writable file descriptors for things open by the library"],["Stdio","An enumeration that is used to configure stdio file descritors"]]});
