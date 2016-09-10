@@ -139,6 +139,15 @@ impl Command {
         self
     }
 
+    pub fn late_unshare<I:IntoIterator<Item=Namespace>>(&mut self, iter: I)
+        -> &mut Command
+    {
+        for ns in iter {
+            self.config.late_namespaces |= ns.to_clone_flag();
+        }
+        self
+    }
+
     /// Reassociate child process with a namespace specified by a file
     /// descriptor
     ///

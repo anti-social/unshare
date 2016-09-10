@@ -86,6 +86,10 @@ pub unsafe fn child_after_clone(child: &ChildInfo) -> ! {
         }
     }
 
+    if libc::unshare(child.cfg.late_namespaces as i32) != 0 {
+        fail(Err::SetNs, epipe);
+    }
+
     child.pivot.as_ref().map(|piv| {
         if ffi::pivot_root(piv.new_root.as_ptr(), piv.put_old.as_ptr()) != 0 {
             fail(Err::ChangeRoot, epipe);
