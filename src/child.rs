@@ -146,6 +146,7 @@ pub unsafe fn child_after_clone(child: &ChildInfo) -> ! {
             if libc::dup2(src_fd, dest_fd) < 0 {
                 fail(Err::StdioError, epipe);
             }
+            libc::close(src_fd);
         }
     }
 
